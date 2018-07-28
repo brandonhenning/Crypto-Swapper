@@ -9,18 +9,20 @@ async function getPrices () {
     try {
         const response = await fetch(URL)
         const prices = await response.json()
+        let btc = prices.USD
         let usd = 1 / prices.USD
         let xrp = 1 / prices.XRP
         let eth = 1 / prices.ETH
         let dash = 1 / prices.DASH
         let bch = 1 / prices.BCH
         let eos = 1 / prices.EOS
-        await setPriceStoreInRedis(xrp, usd, eth, dash, bch, eos)
+        await setPriceStoreInRedis(btc, xrp, usd, eth, dash, bch, eos)
     } catch (error) { console.log('error fetching prices from external API', error) }
 }
 
-async function setPriceStoreInRedis (xrp, usd, eth, dash, bch, eos) {
+async function setPriceStoreInRedis (btc, xrp, usd, eth, dash, bch, eos) {
     try {
+        await redis.set('BTC', btc)
         await redis.set('XRP', xrp)
         await redis.set('USD', usd)
         await redis.set('ETH', eth)
