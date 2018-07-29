@@ -1,13 +1,12 @@
 const store = require('./priceStore')
 const redis = store.redis
 const log = console.log
-const db = require('./database/databaseFunctions')
+const db = require('../database/databaseFunctions')
 
 
 async function trade (balance, coin1, coin2) {
     try {
         const current = await redis.get(`${coin1}`)
-        const btc = await redis.get(`BTC`)
         const oldBalance = current * balance
         const desired = await redis.get(`${coin2}`)
         const newBalance = oldBalance / desired
@@ -29,6 +28,7 @@ async function executeUserTrade (email, desiredCoin) {
 function calculateFees (balance) {
     return balance * 0.9975
 }
+
 
 
 module.exports = {

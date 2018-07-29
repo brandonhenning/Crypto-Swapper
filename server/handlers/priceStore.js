@@ -10,7 +10,7 @@ async function getPrices () {
     try {
         const response = await fetch(URL)
         const prices = await response.json()
-        let btc = 1
+        let btc = prices.USD
         let usd = 1 / prices.USD
         let xrp = 1 / prices.XRP
         let eth = 1 / prices.ETH
