@@ -21,8 +21,16 @@ async function getUser (email) {
     } catch (error) {log('Error retrieving user from database', error)}
 }
 
+async function storeNewUserBalance (email, coin, coinAmount) {
+    try {
+        await pool.query(`UPDATE users SET coin='${coin}', coinamount='${coinAmount}' WHERE email='${email}';`)
+    } catch (error) {log('Error storing new user balance in database', error) }
+}
+
+
 module.exports = {
     createTables,
     createUser,
-    getUser
+    getUser,
+    storeNewUserBalance
 }

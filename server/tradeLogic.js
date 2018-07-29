@@ -1,6 +1,7 @@
 const store = require('./priceStore')
 const redis = store.redis
 const log = console.log
+const db = require('./database/databaseFunctions')
 
 
 async function trade (balance, coin1, coin2) {
@@ -16,11 +17,21 @@ async function trade (balance, coin1, coin2) {
 }
 
 
+async function executeUserTrade (email, desiredCoin) {
+    try {
+        const user = await db.getUser(email)
+        const newBalance = await trade(user.coinamount, user.coin, desiredCoin)
+        db.storeNewUserBalance(email, desiredCoin, newBalance)
+    } catch (error) {log('Error executing user trade', error)}
+}
+
+
 function calculateFees (balance) {
     return balance * 0.9975
 }
 
 
 module.exports = {
-    trade
+    trade,
+    executeUserTrade
 }
