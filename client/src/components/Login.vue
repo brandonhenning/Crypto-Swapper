@@ -3,10 +3,10 @@
         <h1 class='signup-header'>Sign In</h1>
         <form class='sign-up-form' action=''>
             <label for="userEmail">Email Address</label>
-            <input type="email">
+            <input v-model='email' type="email">
             <label for="password">Password</label>
-            <input type="password">
-            <button type="submit" class="btn btn-primary">Log In</button>
+            <input v-model='password' type="password">
+            <button type="submit" class="btn btn-primary" @click="getUser(email, password)">Log In</button>
         </form>
         <p class='signup-explanation'>* If you do not have a user account- one will be generated for you when you enter your email and password.</p>
     </div>
@@ -15,7 +15,14 @@
 
 <script>
 export default {
-  name: 'Login'
+  name: 'Login',
+  props: ['getUser'],
+  data() {
+      return {
+          email: '',
+          password: ''
+      }
+  }
 }
 </script>
 

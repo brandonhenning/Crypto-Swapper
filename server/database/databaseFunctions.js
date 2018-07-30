@@ -21,6 +21,14 @@ async function getUser (email) {
     } catch (error) {log('Error retrieving user from database', error)}
 }
 
+async function authenticateUser (email, password) {
+    try {
+        const user = await pool.query(`SELECT email, coin, coinAmount FROM users WHERE email='${email}' AND password='${password}'`)
+        if (user.rows.length > 0) 
+            {return user.rows}
+    } catch (error) {log('Error authenticating user from database', error)}
+}
+
 async function storeNewUserBalance (email, coin, coinAmount) {
     try {
         await pool.query(`UPDATE users SET coin='${coin}', coinamount='${coinAmount}' WHERE email='${email}';`)
@@ -54,6 +62,7 @@ async function batchUsers () {
     } catch (error) {log('Error retrieving all users from database', error)}
 }
 
+authenticateUser('test@gmail.com', 'poop')
 
 
 module.exports = {
@@ -64,5 +73,6 @@ module.exports = {
     deleteUser,
     batchUsers,
     updateUserDollarBalance,
-    getLeaderboard
+    getLeaderboard,
+    authenticateUser
 }
