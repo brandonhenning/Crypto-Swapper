@@ -7,7 +7,7 @@
             </div>
         </div>
         <div class='play'>
-            <button class='play-button' type="submit">PLAY!</button>
+            <router-link class='play-button' to="/login">PLAY!</router-link>
         </div>
     </div>
 </template>
