@@ -8,6 +8,8 @@
 - Node.js
 - Redis
 - PostgreSQL
+- Vue.js
+- Express
 
 
 [Live Link](https://swapt-crypto.firebaseapp.com/)
