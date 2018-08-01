@@ -18,7 +18,6 @@ async function getPrices () {
         let bch = 1 / prices.BCH
         let eos = 1 / prices.EOS
         await setPriceStoreInRedis(btc, xrp, usd, eth, dash, bch, eos)
-        log('Updated prices in priceStore.js')
     } catch (error) { console.log('Error fetching prices from external API', error) }
 }
 

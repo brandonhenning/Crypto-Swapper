@@ -27,7 +27,9 @@ export default {
       fetch(API_URL)
         .then(response => response.json())
         .then(result => {
-          return this.setUser(result)
+          this.setUser(result)
+          this.$router.push('dashboard')
+          console.log(this.user)
         })
     }
   }

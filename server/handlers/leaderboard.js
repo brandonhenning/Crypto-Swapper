@@ -35,7 +35,7 @@ async function hourlyLeaderboardUpdate () {
     } catch (error) {log('Error updating hourly leaderboard', error)}
 }
 
-hourlyLeaderboardUpdate()
+// hourlyLeaderboardUpdate()
 
 module.exports = {
     hourlyLeaderboardUpdate

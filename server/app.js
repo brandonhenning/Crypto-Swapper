@@ -26,4 +26,5 @@ async function checkUser (email, password) {
     return user
 }
 
+
 app.listen(port)
