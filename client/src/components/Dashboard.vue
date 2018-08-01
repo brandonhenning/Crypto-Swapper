@@ -16,6 +16,7 @@
             <button @click="sendCoin('EOS')"> TRADE for EOS </button>
             <button @click="sendCoin('DASH')"> TRADE for DASH </button>
             <button @click="sendCoin('XRP')"> TRADE for XRP </button>
+            <p class='fee-warning'>* Every trade incurs a 0.25% trading fee for the transaction.</p>
         </div>
     </div>
 </div>
@@ -25,7 +26,7 @@
 <script>
 export default {
     name: 'Dashboard',
-    props: ['user'],
+    props: ['user', 'placeTrade', 'getUser'],
     data() {
       return {
           newCoin: ''
@@ -34,7 +35,8 @@ export default {
     methods: {
         sendCoin(coin) {
             this.newCoin = coin
-            console.log(this.newCoin)
+            this.placeTrade(this.user.email, this.user.password, this.newCoin)
+            this.getUser(this.user.email, this.user.password)
         }
     }
 }
@@ -60,5 +62,14 @@ button {
     margin: 15px;
 }
 
+.fee-warning {
+    font-size: 15px;
+    color: rgb(54, 54, 54);
+    margin-top: 40px;
+}
+
+.trade {
+    margin-top: 80px;
+}
 
 </style>

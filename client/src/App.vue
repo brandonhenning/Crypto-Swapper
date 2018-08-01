@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <router-view :user='user' :coin='coin' :coinAmount='coinAmount' :getUser='getUser'/>
+    <router-view :user='user' :coin='coin' :coinAmount='coinAmount' :getUser='getUser' :placeTrade='placeTrade'/>
   </div>
 </template>
 
@@ -30,6 +30,15 @@ export default {
           this.setUser(result)
           this.$router.push('dashboard')
           console.log(this.user)
+        })
+    },
+    placeTrade(email, password, coin) {
+      const TRADE_URL = `http://localhost:3000/${email}/${password}/${coin}`
+      fetch(TRADE_URL)
+        .then(response => response.json())
+        .then((email, password) => {
+          // this.getUser()
+          console.log(email, password, 'worked this far')
         })
     }
   }

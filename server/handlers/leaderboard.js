@@ -27,7 +27,7 @@ async function updateAllUsersDollarBalance () {
     } catch (error) {log('Error updating all users account dollar balance', error)}
 }
 
-async function hourlyLeaderboardUpdate () {
+async function leaderboardUpdate () {
     try {
         await updateAllUsersDollarBalance()
         const leaderboard = await db.getLeaderboard()
@@ -35,8 +35,7 @@ async function hourlyLeaderboardUpdate () {
     } catch (error) {log('Error updating hourly leaderboard', error)}
 }
 
-// hourlyLeaderboardUpdate()
 
 module.exports = {
-    hourlyLeaderboardUpdate
+    leaderboardUpdate
 }
