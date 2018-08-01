@@ -1,6 +1,6 @@
 const express = require('express')
 const app = express()
-const port = 3000
+const port = process.env.PORT || 3000
 const priceStore = require('./handlers/priceStore')
 const updatePriceLoop = setInterval(priceStore.getPrices, 5000)
 const leaderboard = require('./handlers/leaderboard')
