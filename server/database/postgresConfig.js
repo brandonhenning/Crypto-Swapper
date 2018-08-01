@@ -1,12 +1,13 @@
 const pg = require('pg')
 
 const pool = new pg.Pool({
-    user: 'brandonhenning',
-    host: DATBASE_URL,
+    user: 'wdrojfwvpdhkbc',
+    host: host,
     database: 'd2s5uq37l21psr',
-    password: '123',
+    password: pass,
     port: '5432'
 })
+
 
 module.exports = pool
 

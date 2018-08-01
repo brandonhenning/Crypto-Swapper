@@ -23,23 +23,18 @@ export default {
       this.coinAmount = this.user.coinmount
     },
     getUser(email, password) {
-      const API_URL = `http://localhost:3000/${email}/${password}`
+      const API_URL = `https://swapt-crypto.herokuapp.com/${email}/${password}`
       fetch(API_URL)
         .then(response => response.json())
         .then(result => {
           this.setUser(result)
           this.$router.push('dashboard')
-          console.log(this.user)
         })
     },
     placeTrade(email, password, coin) {
-      const TRADE_URL = `http://localhost:3000/${email}/${password}/${coin}`
+      const TRADE_URL = `https://swapt-crypto.herokuapp.com/${email}/${password}/${coin}`
       fetch(TRADE_URL)
         .then(response => response.json())
-        .then((email, password) => {
-          // this.getUser()
-          console.log(email, password, 'worked this far')
-        })
     }
   }
 }

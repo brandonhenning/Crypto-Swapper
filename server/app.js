@@ -17,12 +17,16 @@ app.use(cors())
 app.use(bodyParser.json())
 
 app.get('/:email/:password', async (request, response) => {
-    const user = await checkUser(request.params.email, request.params.password)
-    if (user) {
-        return response.json({user})
-    } else {
-        return response.json({ message: 'User and password combination not found, please try again' })
-    }
+    try {
+        const user = await checkUser(request.params.email, request.params.password)
+        if (user) {
+            return response.json({ user })
+        } else {
+            const user = await db.createUser(request.params.email, request.params.password)
+            const newUser = await checkUser(request.params.email, request.params.password)
+            return response.json({ newUser })
+        }
+    } catch (error) {log('Error validating or creating user', error)}
 })
 
 app.get('/:email/:password/:coin', async (request, response) => {

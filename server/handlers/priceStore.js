@@ -1,10 +1,8 @@
 const fetch = require('node-fetch')
 const URL = 'https://min-api.cryptocompare.com/data/price?fsym=BTC&tsyms=USD,XRP,ETH,DASH,BCH,EOS'
-const Redis = require('ioredis')
-const redis = new Redis()
+const redisConfig = require('../database/redisConfigs')
+const redis = redisConfig.redis
 const log = console.log
-
-
 
 async function getPrices () {
     try {
