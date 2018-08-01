@@ -32,9 +32,6 @@ export default {
       }
     },
     methods: {
-        formatDollarBalance(balance) {
-            const formattedBalance = `$${balance.toFixed(2)}`
-        },
         sendCoin(coin) {
             this.newCoin = coin
             console.log(this.newCoin)
